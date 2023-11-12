@@ -1,0 +1,99 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block main %}
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders" id="settings-navbar">
+        <a class="nav-link active ms-0" href="/me/settings " id="profile-button-in-settings">Profile</a>
+        <a class="nav-link" href="/me/settings/security" id="security-button-in-settings">Security</a>
+    </nav>
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <form action="/me/settings/upload-image" method="post" enctype="multipart/form-data" style="position: relative;">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2" 
+                        src="{{ url_for('static', filename='images/uploaded_images/' ~ session['user_id'] ~  '.png') }}" alt="Profile Picture">
+                        <h3 >Upload profile picutre</h1>
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <!-- Profile picture upload button-->
+                        <input class="btn btn-primary img-upload " type="file" name="uploaded_image" accept="image/"></input>
+
+                        <input class="btn btn-primary img-submit" type="submit" id="submit-picture"></input>
+                    </div>
+                    {% if get_flashed_messages() %}
+                    {% for message in get_flashed_messages() %}
+                        {% if "Profile picture changed successfully!" in message %}
+                            <span class="badge fs-6 fw-normal bg-success text-white">{{ message }}</span>
+                        {% endif %}
+                        {% if "Couldn't find image" in message %}
+                            <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                        {% endif %}
+                        {% if "File is not an image!" in message %}
+                        <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                
+            </form>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form action="/me/settings" method="post">
+
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">  
+                                <label class="small mb-1" for="first_name">First name</label>
+                                <input class="form-control" id="first_name" name="first_name" type="text" placeholder="Enter your first name" value="{{ session['first_name'] }}" autocomplete="off">
+                            </div>
+
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="last_name">Last name</label>
+                                <input class="form-control" id="last_name" name="last_name" type="text" placeholder="Enter your last name" value="{{ session['last_name'] }}" autocomplete="off" >
+                            </div>
+                            
+                        </div>
+                        <!-- Save changes button-->
+
+                        <button class="btn btn-primary" type="submit">Save changes</button>
+
+                        {% if get_flashed_messages() %}
+                        {% for message in get_flashed_messages() %}
+                            {% if "Name changed successfully!" in message %}
+                            <span class="badge fs-6 fw-normal bg-success text-white">{{ message }}</span>
+                            {% endif %}
+                            {% if "First Name and Last Name are required!" in message  %}
+                            <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                            {% endif %}
+                            {% if "30 characters per name at most!" in message in message %}
+                            <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="space_between_main_footer">
+    
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="595369139553-t0e6cd3brnb4c13le99t6t9thuam0fc4.apps.googleusercontent.com">
+
+    <!-- Bootstrap CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.0-dist/css/bootstrap.min.css') }}">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    
+    <!--Icon-->
+    <link rel="icon" href="{{ url_for('static', filename='images/icon_blue_jDg_icon.ico') }}" type="image/x-icon">
+
+   
+    <title>MYM: {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <a href="/"><img src="{{ url_for('static', filename='images/Logo-blue.png') }}" alt="logo"></a>
+        </div>
+        {% block main %} {% endblock %}
+    </div>
+
+    <!-- Bootstrap JS  -->
+    <script src="{{ url_for('static', filename='bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,105 @@
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Security
+{% endblock %}
+
+{% block main %}
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders">
+        <a class="nav-link active ms-0" href="/me/settings " id="profile-button-in-settings">Profile</a>
+        <a class="nav-link" href="/me/settings/security" id="security-button-in-settings">Security</a>
+    </nav>
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <form action="/me/settings/upload-image" method="post" enctype="multipart/form-data">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2" 
+                        src="{{ url_for('static', filename='images/uploaded_images/' ~ session['user_id'] ~ '.png') }}" alt="Profile Picture">
+                        <h3 >Upload profile picutre</h1>
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <!-- Profile picture upload button-->
+                        <input class="btn btn-primary img-upload " type="file" name="uploaded_image" accept="image/"></input>
+
+                        <input class="btn btn-primary img-submit " type="submit" id="submit-picture"></input>
+                    </div>
+                    <!-- Profile picture card -->
+                {% if get_flashed_messages() %}
+                    {% for message in get_flashed_messages() %}
+                        {% if "Profile picture changed successfully!" in message %}
+                            <span class="badge fs-6 fw-normal bg-success text-white">{{ message }}</span>
+                        {% endif %}
+                        {% if "Couldn't find image" in message %}
+                            <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                        {% endif %}
+                        {% if "File is not an image!" in message %}
+                        <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Security</div>
+                <div class="card-body">
+                    <form action="/me/settings/security" method="post">
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Current Password</label>
+                            <input class="form-control" id="old_password" name="old_password" type="password" placeholder="Enter your current password" autocomplete="current-password">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">New Password</label>
+                            <input class="form-control" id="new_password" name="new_password" type="password" placeholder="Enter your new password" autocomplete="new-password">
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Confirm new password</label>
+                            <input class="form-control" id="new_password_again" name="new_password_again" type="password" placeholder="New password again" autocomplete="new-password" >
+                        </div>
+                     
+
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" type="submit">Change Password</button>
+                        {% if get_flashed_messages() %}
+                            {% for message in get_flashed_messages() %}
+                                {% if "Password changed successfully!" in message %}
+                                <span class="badge fs-6 fw-normal bg-success text-white">{{ message }}</span>
+                                {% endif %}
+                                {% if "Invalid old password" in message %}
+                                <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                                {% endif %}
+                                {% if "New passwords don't match" in message %} 
+                                <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                                {% endif %}
+                                {% if "Password should be more than 4 characters" in message %}
+                                <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                                {% endif %}
+                                {% if "Password shouldn't be more than 20 characters" in message %}
+                                <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                                {% endif %}
+                                {% if "No password avilable as you are a 3rd party user" in message %}
+                                <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="space_between_main_footer">
+    
+</div>
+{% endblock %}

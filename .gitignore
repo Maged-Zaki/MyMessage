@@ -1,0 +1,7 @@
+.DS_Store
+/__pycache__
+/flask_session
+/venv
+
+config.py
+client_secret.json

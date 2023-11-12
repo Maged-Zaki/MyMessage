@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main %}
+
+<div class="text mt-5 ">
+  <div class="container">
+        <div class="text-first text-start">
+          <h3 class="fs-1">MyMessage</h3>
+          <p class="">
+            Welcome to our messaging web application! Connect and communicate with your friends, family, and colleagues
+            effortlessly. Stay in touch no matter where you are. Start sending messages, photos, and emojis to express yourself fully.
+          </p>
+
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="chat-end-to-end" >
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6  ">
+
+        <div class="text-sec mt-5">
+        <h3>End-to-End Encryption</h3>
+        <p>
+          Your privacy is our priority. We utilize state-of-the-art end-to-end encryption to secure your messages and
+          protect your data from unauthorized access. Feel confident in sharing sensitive information and personal
+          moments, knowing that your conversations are safeguarded and private.
+        </p>
+        </div>
+
+        <div class="mt-5">
+          <button class="homepage-button " id="homepage-button" type="button">
+            <strong class="fs-5">Register now!</strong>
+            <div id="container-stars">
+              <div id="stars"></div>
+            </div>
+          
+            <div id="glow">
+              <div class="circle"></div>
+              <div class="circle"></div>
+            </div>
+          </button>
+          
+        </div>
+
+      </div>
+      
+      <div class="col-lg-6">
+        <img class="homepage-image img-fluid" src="{{ url_for('static', filename='images/homepage2.jpg') }}" alt="image">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="space_between_main_footer">
+    
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Send Money
+{% endblock %}
+
+{% block main %}
+
+
+<div class="container" style="max-width: 400px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; margin-bottom: 30px;">Send Money</h1>
+    <h5 style="text-align: center; margin-bottom: 40px;"><m id="m-my">M</m><r id="r-my">y</r><m id="m-my">M</m><r id="r-my">essage</r> Balance: ${{ session["wallet"] }}</h1>
+
+    <form action="/me/send-money" method="post">
+        <label for="recipient_username" style="font-weight: bold;">Recipient Username:</label>
+        <br>
+        <input type="text" id="recipient_username" name="recipient_username" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <br><br>
+
+        <label for="amount" style="font-weight: bold;">Amount:</label>
+        <br>
+        <input type="number" id="amount" name="amount" step="0.01" min="0" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        {% if get_flashed_messages() %}
+            {% for message in get_flashed_messages() %}
+                {% if "Money sent successfully!" in message %}
+                    <span class="badge fs-5 fw-normal bg-success text-white">{{ message }}</span>
+                {% else %}
+                    <span class="badge fs-6 fw-normal bg-danger text-white">{{ message }}</span>
+                {% endif %}
+
+            {% endfor %}
+        {% endif %}
+
+
+        <br><br>
+        
+
+        <button type="submit" style="width: 100%; padding: 10px; background-color: rgb(76, 79, 245); color: #fff; border: none; border-radius: 5px; cursor: pointer;">Send Money</button>
+        
+    </form>
+</div>
+  <div id="space_between_main_footer">
+    
+  </div>
+
+</html>
+
+
+
+
+{% endblock %}

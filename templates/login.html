@@ -1,0 +1,54 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+    Log in
+{% endblock %}
+
+{% block main %}
+
+    <form class="p-3 mt-3 " action="/login" method="post">
+        {% if get_flashed_messages() %}
+            {% for message in get_flashed_messages() %}
+                {% if "Email verified successfully! You can now log in." in message %}
+                    <p class="text-success">{{ message }}</p>
+                {% else %}
+                    <p class="text-danger">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="username" id="username" placeholder="Username" title="Username" autofocus autocomplete="off" required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="password" name="password" id="password" placeholder="Password" title="Password" required>
+
+        </div>
+
+        <button class="btn mt-3">Login</button>
+    </form>
+
+    <div class="container google google-button " >
+        <a href="/login/google">
+            <div class="g-sign-in-button">
+            <div class="content-wrapper">
+                <div class="logo-wrapper">
+                    <img src="{{ url_for('static', filename='images/g-logo.png') }}">
+                </div>
+                <span class="text-container">
+                <span>Continue with Google</span>
+                </span>
+            </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="text-center fs-6">
+        <a href="/forget_password">Forget password?</a> or <a href="/register">Sign up</a>
+    </div>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+
+{% endblock %}

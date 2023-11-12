@@ -1,0 +1,71 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <form class="p-3 mt-3 " action="/register" method="post"  >
+        {% if get_flashed_messages() %}
+            {% for message in get_flashed_messages() %}
+                {% if "Registration successful! Check your email for verification." in message %}
+                    <p class="text-success">{{ message }}</p>
+                {% else %}
+                    <p class="text-danger">{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="first_name" id="first_name" placeholder="First Name" title="First Name" autofocus autocomplete="off" required> 
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="last_name" id="last_name" placeholder="Last name" title="Last Name" autofocus autocomplete="off" required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="username" id="username" placeholder="Username" title="Username" autofocus autocomplete="off" required>
+        </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-envelope"></span>
+                <input type="text" name="email" id="email" placeholder="Email Address" title="Email" autofocus autocomplete="new-email" required>
+            </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="password" name="password" id="password" placeholder="Password" title="Password" required>
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="password" name="password_again" id="password_again" placeholder="Password Again" title="Password Again" required>
+        </div>
+
+        <button class="btn mt-3">Register</button>
+    </form>
+
+    <div class="container google google-button " >
+        <a href="/login/google">
+            <div class="g-sign-in-button">
+            <div class="content-wrapper">
+                <div class="logo-wrapper">
+                    <img src="{{ url_for('static', filename='images/g-logo.png') }}">
+                </div>
+                <span class="text-container">
+                <span>Continue with Google</span>
+                </span>
+            </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="text-center fs-6">
+        Already an existing user? <a href="/login">Log in</a>
+    </div>
+
+
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+  
+{% endblock %}
+

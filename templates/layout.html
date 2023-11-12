@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Bootstrap CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.0-dist/css/bootstrap.min.css') }}">
+
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <!--Icon-->
+    <link rel="icon" href="{{ url_for('static', filename='images/icon_blue_jDg_icon.ico') }}" type="image/x-icon">
+
+
+
+    {% block head %} {% endblock %}
+
+    <title>MYM {% block title %} {% endblock %}</title>
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container">
+  <a class="navbar-brand" href="/">
+    <img  src="{{ url_for('static', filename='images/Logo-blue3.png') }}" alt="Logo" id="logo" >
+  </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon   "></span>
+    </button>
+    {% if session["user_id"] %}     
+    <form  class="col-sm-3" action="/search" method="get" >
+        <div class="input-group" id="search-bar">
+            <input type="search" class="form-control rounded" name="q" placeholder="Search for users" autocomplete="off" aria-label="Search" aria-describedby="search-addon">
+            <button type="submit" class="btn btn-outline-primary" id="search-text-box-button" >search</button>
+          </div>
+    </form>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav" id="home-features-about-help-button">
+            <li >
+
+            </li>
+            <li class="nav-item active" id="home-button">
+                <a class="nav-link" href="/chat">Chat</a>
+            </li>
+            <li class="nav-item" id="about-button">
+                <a class="nav-link" href="/me">Profile</a>
+            </li>
+            <li class="nav-item" id="about-button">
+                <a class="nav-link" href="/me/send-money">Money Transfer</a>
+            </li>
+            <li class="nav-item" id="about-button">
+                <a class="nav-link" href="/me/transaction-history">Transaction history</a>
+            </li>
+        </ul>
+    </div>
+           
+        
+    {% else %}
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav" id="home-features-about-help-button">
+            <li class="nav-item active" id="home-button">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown" id="features-button">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Features
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop-down-features">
+                    <a class="dropdown-item" href="/features/end-to-end-encryption">End-To-End Encryption</a>
+                    <a class="dropdown-item" href="/features/money-transfer">Money Transfer</a>
+                </div>
+            </li>
+            <li class="nav-item" id="about-button">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item" id="help-button">
+                <a class="nav-link" href="/help">Help</a>
+            </li>
+        </ul>
+    
+        {% endif %}
+
+        {% if session["user_id"] %} 
+        <ul class="navbar-nav" id="name_when_logged_in">
+            <li class="nav-item dropdown" id="profile-button">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="far fa-user"></span>
+                    {{ session["first_name"] ~ " " ~ session["last_name"] }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop-down-profile">
+                    <a class="dropdown-item" href="/me/settings">Settings</a>
+                    
+                </div>
+            </li>
+            <li class="nav-item" id="log-out-button" >
+                <a class="nav-link" href="/logout">Log out</a>
+            </li>
+        </ul>
+
+        {% else %}
+        <ul class="navbar-nav" id="login-and-sign-up">
+            <li class="nav-item" id="login-button">
+                <a class="nav-link" href="/login">Log in</a>
+            </li>
+            <li class="nav-item" id="sign-up-button">
+                <a class="nav-link" href="/register">Sign Up</a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+  </div>
+</nav>  
+
+    
+    {% block main %} {% endblock %}
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-dark text-white " >
+
+        <!-- Section: Links  -->
+        <section class="">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <img src="{{ url_for('static', filename='images/Logo-blue.png') }} " alt="Logo" id="logo-footer">   
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" id="features-footer">
+                <!-- Links -->
+                <h6 class=" fw-bold mb-4">
+                Features
+                </h6>
+                <p>
+                <a href="/features/end-to-end-encryption" class="text-reset">End-to-end Encryption</a>
+                </p>
+                <p>
+                <a href="/features/money-transfer" class="text-reset">Money Transfer</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4" id="useful-links-footer">
+                <!-- Links -->
+                <h6 class=" fw-bold mb-4">
+                Useful links
+                </h6>
+                <p>
+                <a href="/help" class="text-reset">Help</a>
+                </p>
+                <p>
+                <a href="/about" class="text-reset">About</a>
+                </p>
+                <p>
+                <a href="/terms" class="text-reset">Terms & Privacy Policy</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" id="contact-footer">
+                <!-- Links -->
+                <h6 class="fw-bold mb-4">Contact</h6>
+                <p><i class="fas fa-home me-3 text-secondary"></i> Cairo, Giza 20015, Egypt</p>
+                <p id="email-footer">
+                <i class="fas fa-envelope me-3 text-secondary"></i>
+                <a href="mailto:support@mymessage.com" class="text-reset text-decoration-none " >support@mymessage.com</a>
+                </p>
+                <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+            </div>
+            <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+        </div>
+        </section>
+        <!-- Section: Links  -->
+        <!-- Section: Social media -->
+        <section class="mb-4 d-flex justify-content-center" id="social-media">
+            <!-- Facebook -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-white m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target=”_blank”
+            ><i class="fab fa-facebook-f"></i
+            ></a>
+    
+            <!-- Twitter -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-white m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target=”_blank”
+            ><i class="fab fa-twitter"></i
+            ></a>
+    
+            <!-- Google -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-white m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target=”_blank”
+            ><i class="fab fa-google"></i
+            ></a>
+    
+            <!-- Instagram -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-white m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target=”_blank”
+            ><i class="fab fa-instagram"></i
+            ></a>
+    
+            <!-- Linkedin -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-white m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target=”_blank”
+            ><i class="fab fa-linkedin"></i
+            ></a>
+            <!-- Github -->
+            <a
+            class="btn btn-link btn-floating btn-lg text-white m-1"
+            href="#!"
+            role="button"
+            data-mdb-ripple-color="dark"
+            target=”_blank”
+            ><i class="fab fa-github"></i
+            ></a>
+        </section>
+                <!-- Section: Social media -->
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+        © 2023 Copyright :
+        <a class="text-reset  fw-bold" href="/">MyMessage</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+<!-- Footer -->
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='bootstrap-5.3.0-dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+
+
+
+
+
+</body>
+
+</html>
