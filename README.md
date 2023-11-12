@@ -2,6 +2,8 @@
 MyMessage is a web-based WhatsApp-like application.
 ## Description:
 MyMessage app is the final project for CS50. It enables users to send and receive messages in a real-time chat environment and was built using the Flask framewok, also it includes 3rd party logging in with google and all messages are encrypted using asymmetric encryption. The project took approximately 3 weeks to complete and was both exciting and occasionally challenging 😅.
+## Screenshot
+![](https://github.com/Maged-Zaki/MyMessage/blob/main/static/images/GitHubImage.PNG)
 
 ## Technologies and Libraries used
 - **Sqlite:** Used as a database engine.
