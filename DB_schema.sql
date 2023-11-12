@@ -26,7 +26,7 @@ CREATE TABLE conversations (
 );
 CREATE TABLE messages (
     message_id INTEGER NOT NULL PRIMARY KEY,
-    conversation_id IaNTEGER,
+    conversation_id INTEGER,
     sender_id INTEGER,
     recipient_id INTEGER,
     message_content TEXT,
