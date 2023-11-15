@@ -7,6 +7,7 @@ MyMessage app is the final project for CS50. It enables users to send and receiv
 
 ## Technologies and Libraries used
 - **Sqlite:** Used as a database engine.
+- **Docker:** Used for containerization.
 - **cs50.SQL:** Used for database querying and management.
 - **flask_session.Session:** Used for session handling within the application.
 - **flask_socketio.SocketIO and emit:** Used to establish connections between the server and users, facilitating real-time communication.
