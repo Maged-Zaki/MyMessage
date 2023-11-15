@@ -42,14 +42,17 @@ python -m venv venv
 venv\Scripts\activate
 
 ```
+```
+pip install -r windows_requirements.txt
+
+```
 **On MacOS**
 ```
 source venv/bin/activate
 
 ```
 ```
-pip install -r requirements.txt
-
+pip install -r macOs_requirements.txt
 ```
 
 **At this moment before we run the server we need download the secret_client file from google console.**
