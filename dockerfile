@@ -14,5 +14,5 @@ RUN pip install -r macOs_requirements.txt
 # Expose the port the app runs on
 EXPOSE 5000
 
-# Run the Flask application
-CMD ["flask", "run"]
+# Run the Flask application and allow external access
+CMD ["flask", "run", "--host=0.0.0.0"]
