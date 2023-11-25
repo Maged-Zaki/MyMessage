@@ -233,7 +233,7 @@ def google_callback():
     #save google image with his ID to display it later
     filename = f"{db_user['user_id']}.png"
 
-    user_picture_path = os.path.join('static\\images\\uploaded_images', filename)   
+    user_picture_path = os.path.join('static', 'images', 'uploaded_images', filename)   
 
     with open(user_picture_path, 'wb') as file:
         response = requests.get(picture_url)
@@ -544,9 +544,9 @@ def verifiy(token):
     #save default picture in the uploaded images folder
 
     filename = f"{user_id}.png"
-    user_picture_path = os.path.join('static\\images\\uploaded_images', filename)   
+    user_picture_path = os.path.join('static', 'images','uploaded_images', filename)   
 
-    default_picture_path = 'static\\images\\default_profile_picture.png'
+    default_picture_path = os.path.join('static','images', 'default_profile_picture.png')
 
     # Save the image to the specified path
     shutil.copy(default_picture_path, user_picture_path)
@@ -723,7 +723,7 @@ def upload_image():
     filename = f"{session['user_id']}.png"
 
     # Construct the complete image path
-    image_path = os.path.join('static\\images\\uploaded_images', filename)
+    image_path = os.path.join('static', 'images', 'uploaded_images', filename)
 
     try:
         with Image.open(uploaded_image) as img:
